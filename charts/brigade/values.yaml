@@ -58,7 +58,7 @@ api:
   # tag:
   service:
     name: brigade-api
-    type: ClusterIP
+    type: LoadBalancer #ClusterIP
     externalPort: 7745
     internalPort: 7745
 
@@ -104,7 +104,7 @@ cr:
 # risk for poorly written scripts, and could be an opening for DOS-style
 # attacks on your cluster.
 ai:
-  enabled: true
+  enabled: false
   registry: docker.imagia.com:5000
   name: brigade-ai-gateway
   #tag: latest
@@ -122,7 +122,7 @@ ai:
 #
 # To globally turn of the vacuum, set enabled=false
 vacuum:
-  enabled: true
+  enabled: false
   # Set a schedule for how frequently this check is run.
   # Note that a run of the vacuum typically takes at least a minute. Finer-level
   # granularity than that may result in multiple vacuums running at once.
@@ -146,6 +146,7 @@ vacuum:
 # The service is for the AI Brigade gateway. If you do not want to have Brigade
 # listening for incoming requests, disable this.
 service:
+  enabled: false
   name: brigade-service
   type: LoadBalancer
   externalPort: 7766
