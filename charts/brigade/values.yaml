@@ -104,15 +104,15 @@ cr:
 # risk for poorly written scripts, and could be an opening for DOS-style
 # attacks on your cluster.
 ai:
-  enabled: false
+  enabled: true
   registry: docker.imagia.com:5000
   name: brigade-ai-gateway
   #tag: latest
   service:
     name: brigade-ai-service
     type: ClusterIP  # Change to LoadBalancer if you want this externally available.
-    externalPort: 80
-    internalPort: 8000
+    externalPort: 7766
+    internalPort: 7766
 
 # The vacuum periodically cleans up old builds.
 # Brigade does not delete builds on completion. Instead, it leaves builds around
