@@ -1,12 +1,13 @@
 # Name of the project, in the form "user/project"
-project: "deis/empty-testbed"
+project: "mbarison/empty-testbed"
 
 # Domain/Org/Project
-repository: "github.com/deis/empty-testbed"
+repository: "github.com/mbarison/empty-testbed"
 
 # The definitive clone URL. This can be any Git-supported URL format.
 # You may set this to "" for no clone URL.
-cloneURL: "https://github.com/deis/empty-testbed.git"
+#cloneURL: "https://github.com/mbarison/empty-testbed.git"
+cloneURL: ""
 
 # Used by GitHub and other services to compute hook HMACs.
 sharedSecret: "IBrakeForSeaBeasts"
@@ -59,7 +60,7 @@ secrets: {}
 # Allow Jobs to run in privileged mode. This will allow features like
 # Docker-in-Docker. This must be set to true before turning allowHostMounts
 # on.
-allowPrivilegedJobs: "true"
+allowPrivilegedJobs: "false"
 
 # OPTIONAL: Use this to allow host mounted docker sockets in your jobs.
 # This is a big security risk if your project is public-facing; enable at your own risk.

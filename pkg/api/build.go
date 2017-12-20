@@ -5,7 +5,7 @@ import (
 
 	"gopkg.in/gin-gonic/gin.v1"
 
-	"github.com/Azure/brigade/pkg/storage"
+	"github.com/mbarison/brigade/pkg/storage"
 )
 
 // Build represents the build api handlers.

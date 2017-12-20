@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "brigade.ai.fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+    role: gateway
+    type: ai-training
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  - port: {{ .Values.ai.service.externalPort }}
+    targetPort: {{ .Values.ai.service.internalPort }}
+    protocol: TCP
+    name: {{ .Values.ai.service.name }}
+  selector:
+    app: {{ template "brigade.fullname" . }}
+    role: gateway
+    type: ai-training

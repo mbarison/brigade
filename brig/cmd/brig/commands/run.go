@@ -14,9 +14,9 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 
-	"github.com/Azure/brigade/pkg/brigade"
-	"github.com/Azure/brigade/pkg/storage"
-	"github.com/Azure/brigade/pkg/storage/kube"
+	"github.com/mbarison/brigade/pkg/brigade"
+	"github.com/mbarison/brigade/pkg/storage"
+	"github.com/mbarison/brigade/pkg/storage/kube"
 )
 
 var (

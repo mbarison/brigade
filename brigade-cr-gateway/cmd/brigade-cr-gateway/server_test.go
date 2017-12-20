@@ -8,7 +8,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/Azure/brigade/pkg/brigade"
+	"github.com/mbarison/brigade/pkg/brigade"
 )
 
 func TestNewRouter(t *testing.T) {

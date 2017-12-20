@@ -5,8 +5,8 @@ import (
 
 	"gopkg.in/gin-gonic/gin.v1"
 
-	"github.com/Azure/brigade/pkg/brigade"
-	"github.com/Azure/brigade/pkg/storage"
+	"github.com/mbarison/brigade/pkg/brigade"
+	"github.com/mbarison/brigade/pkg/storage"
 )
 
 // Project represents the project api handlers.

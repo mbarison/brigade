@@ -11,7 +11,7 @@ import (
 	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
 
-	"github.com/Azure/brigade/pkg/brigade"
+	"github.com/mbarison/brigade/pkg/brigade"
 )
 
 // GetBuild returns the build.

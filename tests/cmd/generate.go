@@ -14,8 +14,8 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
 
-	"github.com/Azure/brigade/pkg/storage/kube"
-	"github.com/Azure/brigade/pkg/webhook"
+	"github.com/mbarison/brigade/pkg/storage/kube"
+	"github.com/mbarison/brigade/pkg/webhook"
 )
 
 var (

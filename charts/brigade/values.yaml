@@ -38,7 +38,7 @@ rbac:
 
 # controller is the main event processor in Brigade.
 controller:
-  registry: deis
+  registry: docker.imagia.com:5000
   name: brigade-controller
   # tag should only be specified if you want to override Chart.appVersion
   # The default tag is the value of .Chart.AppVersion
@@ -53,7 +53,7 @@ controller:
 # brig) may not be able to learn about it.
 api:
   enabled: true
-  registry: deis
+  registry: docker.imagia.com:5000
   name: brigade-api
   # tag:
   service:
@@ -64,15 +64,15 @@ api:
 
 # worker is the JavaScript worker. These are created on demand by the controller.
 worker:
-  registry: deis
+  registry: docker.imagia.com:5000
   name: brigade-worker
   #tag:
   #pullPolicy: IfNotPresent
 
 # gw is the GitHub gateway.
 gw:
-  enabled: true
-  registry: deis
+  enabled: false
+  registry: docker.imagia.com:5000
   name: brigade-gateway
   #tag:
   #pullPolicy: IfNotPresent
@@ -87,11 +87,29 @@ gw:
 # attacks on your cluster.
 cr:
   enabled: false
-  registry: deis
+  registry: docker.imagia.com:5000
   name: brigade-cr-gateway
   #tag: latest
   service:
     name: brigade-cr-service
+    type: ClusterIP  # Change to LoadBalancer if you want this externally available.
+    externalPort: 80
+    internalPort: 8000
+
+# These values are for the AI gateway.
+# Enabling this will start a service that handles webhooks from WHEREVER?
+# Note that these registries do not have
+# strong auth built in, so enabling this gateway could result in repeated
+# bogus requests from an unauthenticated source. This could pose a security
+# risk for poorly written scripts, and could be an opening for DOS-style
+# attacks on your cluster.
+ai:
+  enabled: false
+  registry: docker.imagia.com:5000
+  name: brigade-ai-gateway
+  #tag: latest
+  service:
+    name: brigade-ai-service
     type: ClusterIP  # Change to LoadBalancer if you want this externally available.
     externalPort: 80
     internalPort: 8000
@@ -110,7 +128,7 @@ vacuum:
   # granularity than that may result in multiple vacuums running at once.
   # Format follows accepted Cron formats: https://en.wikipedia.org/wiki/Cron
   schedule: "@hourly"
-  registry: "deis"
+  registry: "docker.imagia.com:5000"
   name: "brigade-vacuum"
   # tag: latest
   # Age tells the vacuum how old a thing may be before it is considered ready to
@@ -125,13 +143,13 @@ vacuum:
   # If both age and maxBuilds are provided, age is applied first, then maxBuilds.
   maxBuilds: 0
 
-# The service is for the Brigade gateway. If you do not want to have Brigade
-# listening for incomming GitHub requests, disable this.
+# The service is for the AI Brigade gateway. If you do not want to have Brigade
+# listening for incoming requests, disable this.
 service:
   name: brigade-service
   type: LoadBalancer
-  externalPort: 7744
-  internalPort: 7744
+  externalPort: 7766
+  internalPort: 7766
 # By default, this is off. If you enable it, you might want to change the
 # service.type to ClusterIP
 ingress:
