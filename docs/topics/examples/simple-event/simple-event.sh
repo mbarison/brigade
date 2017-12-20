@@ -25,10 +25,11 @@ EOF
 while : ; do
   # We'll use a UUID instead of a ULID. But if you want a ULID generator, you
   # can grab one here: https://github.com/technosophos/ulid
-  uuid="$(uuidgen | tr '[:upper:]' '[:lower:]')"
+  #uuid="$(uuidgen -t | tr '[:upper:]' '[:lower:]')"
+  ulid="$(ulid | tr '[:upper:]' '[:lower:]')"
 
   # We can use the UUID to make sure we get a unique name
-  name="simple-event-$uuid"
+  name="simple-event-${ulid}"
 
   # This will just print the system time for the system running the script.
   payload=$(date)
@@ -41,7 +42,7 @@ metadata:
   labels:
     heritage: brigade
     project: ${project_id}
-    build: ${uuid}
+    build: ${ulid}
     commit: ${commit}
     component: build
 type: Opaque
@@ -50,10 +51,10 @@ data:
   event_provider: $(echo -n "${event_provider}" | base64 -w0)
   event_type: $(echo -n "${event_type}" | base64 -w0)
   project_id: $(echo -n "${project_id}" | base64 -w0)
-  build_id: $(echo -n "${uuid}" | base64 -w0)
+  build_id: $(echo -n "${ulid}" | base64 -w0)
   payload: $(echo -n "${payload}" | base64 -w0)
   script: $(echo -n "${script}" | base64 -w0)
 EOF
-  sleep 60
+  sleep 10
 done
 
